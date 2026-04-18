@@ -1135,14 +1135,240 @@
         <input class="chat-input" id="chatInput" type="text" placeholder="Ask about Shubham..." maxlength="300" />
         <button class="chat-send" id="chatSend"><i class="fa-solid fa-paper-plane"></i></button>
     </div>
-    <div class="chat-footer-note">Powered by Claude AI</div>
+    <div class="chat-footer-note">Ask me anything about Shubham</div>
 </div>
 
 <!-- ── CHATBOT SCRIPT ── -->
 <script>
 (function() {
-    const SYSTEM_PROMPT = [
-        "You are a professional AI assistant on Shubham Agarwal's portfolio website.",
+
+    // ── KNOWLEDGE BASE ──────────────────────────────────────────────
+    const KB = [
+
+        {
+            keys: ['who','shubham','yourself','about','tell me','introduce','summary','profile','background'],
+            reply: "I'm Shubham Agarwal — a back office professional with <strong>7+ years of experience</strong> in cash & bank operations, document management, MIS reporting, and office coordination. I managed fund transactions worth <strong>&#8377;250–&#8377;500 crore</strong> at Meja Thermal Power Project (JV of NTPC & UPRVUNL). I'm also skilled in AI tools and prompt engineering. Open to full-time, part-time, and remote opportunities."
+        },
+        {
+            keys: ['experience','work','job','career','employment','history','worked','companies','roles'],
+            reply: "Shubham has <strong>7+ years of work experience</strong> across 4 roles:<br><br>1. <strong>Field Sales Executive</strong> – Paytm Services (Jan–Aug 2025) — transitional role<br>2. <strong>Office Associate – Cash, Bank & MIS</strong> – Utility Powertech Ltd / NTPC MEJA (Mar 2019–Jan 2025) — core role, 5 yrs 10 mos<br>3. <strong>Investment Manager & Office Associate</strong> – Rastogi Investment (May–Oct 2018)<br>4. <strong>HR Associate & Office Site Supervisor</strong> – Integrated Telenet Services (Jun 2016–Nov 2017)"
+        },
+        {
+            keys: ['ntpc','meja','utility powertech','uprvunl','thermal','power plant','main job','core','longest'],
+            reply: "At <strong>Utility Powertech Limited</strong> (Meja Thermal Power Project, JV of NTPC & UPRVUNL), Shubham worked from <strong>March 2019 to January 2025</strong> (5 yrs 10 mos) as Office Associate – Cash, Bank & MIS.<br><br>Key work:<br>• Managed fund transactions worth <strong>&#8377;250–&#8377;500 crore</strong><br>• Daily bank payments, bank advices & bank guarantees MIS<br>• Work contract billing & payments on SAP FICO & Finmat<br>• MIS reports for bank guarantees & SRV records<br>• Document control & interdepartmental coordination"
+        },
+        {
+            keys: ['paytm','sales','field','fintech'],
+            reply: "<strong>Field Sales Executive at Paytm Services</strong> (Jan 2025–Aug 2025) was a short-term transitional role where Shubham onboarded merchants, deployed EDC Swipe Machines with KYC documentation, and handled Loan & Gold SIP leads. He took this role while actively pursuing back office opportunities aligned with his core expertise."
+        },
+        {
+            keys: ['rastogi','investment','investment manager'],
+            reply: "At <strong>Rastogi Investment, Prayagraj</strong> (May–Oct 2018), Shubham worked as Investment Manager & Office Associate — managing documentation, client correspondence, investment records, and daily office operations."
+        },
+        {
+            keys: ['integrated telenet','telenet','hr','supervisor','gail','pgcil','railtel','recruit'],
+            reply: "At <strong>Integrated Telenet Services & Contracts</strong> (Jun 2016–Nov 2017), Shubham worked as HR Associate & Office Site Supervisor — recruiting ITI/Diploma candidates for GAIL, PGCIL, RailTel & GGL projects, managing HR documentation, attendance, compliance, and site safety."
+        },
+        {
+            keys: ['skill','skills','technical','tools','software','know','proficient','expertise','capable'],
+            reply: "Shubham's skills are:<br><br><strong>ERP & Finance:</strong> SAP FICO basics (Payment & Voucher Posting), Finmat by XL Softech, Data Processing, Vendor Payments<br><br><strong>MIS & Office:</strong> MS Excel (Intermediate), MIS Reports, MS Word & PowerPoint, Email & Office Coordination<br><br><strong>Other:</strong> Report Preparation, Documentation Management, Client Relations, Bank Guarantees & Funds Management<br><br><strong>AI & Digital:</strong> ChatGPT, Claude, Gemini, Prompt Engineering, AI Content Creation, Adobe Photoshop & Acrobat"
+        },
+        {
+            keys: ['sap','fico','sap fico','erp','voucher','posting'],
+            reply: "Shubham has <strong>SAP FICO basics</strong> — specifically Payment & Voucher Posting, cash & bank section work, and work contract billing & payments. He used SAP FICO at NTPC Meja for daily financial operations. Note: this is basics/working level, not advanced SAP."
+        },
+        {
+            keys: ['finmat','xl softech','xlsoftech'],
+            reply: "Shubham has hands-on experience with <strong>Finmat by XL Softech</strong> — used for financial data entry and transaction processing during his tenure at Meja Thermal Power Project."
+        },
+        {
+            keys: ['excel','spreadsheet','ms excel'],
+            reply: "Shubham's Excel level is <strong>Intermediate</strong> — he works with basic formulas, data entry, and MIS report sheets. He does not have advanced Excel skills like pivot tables or VLOOKUP."
+        },
+        {
+            keys: ['mis','report','reporting','mis report'],
+            reply: "Shubham has solid experience in <strong>MIS reporting</strong> — he maintained MIS reports for Bank Guarantees, SRV records from vendors and departments, and daily operational reporting during his 6-year tenure at NTPC Meja."
+        },
+        {
+            keys: ['bank guarantee','bank guarantees','guarantee'],
+            reply: "Shubham managed <strong>Bank Guarantees tracking and MIS</strong> at NTPC Meja — maintaining records, tracking expiry, and coordinating with departments. This was a key part of his daily responsibilities."
+        },
+        {
+            keys: ['cash','bank','payment','bank payment','bank advice','fund','funds','transaction','crore','250','500'],
+            reply: "One of Shubham's strongest areas — he handled <strong>cash & bank section operations</strong> under the Finance Department at NTPC Meja, managing fund transactions worth <strong>&#8377;250–&#8377;500 crore</strong>. This included daily bank payments, preparing bank advices, and funds management with high accuracy."
+        },
+        {
+            keys: ['document','documentation','filing','records','file management'],
+            reply: "Shubham is experienced in <strong>document control and management</strong> — filing, tracking, and maintaining financial & contractual documents. Documentation Management is listed as one of his core skills."
+        },
+        {
+            keys: ['vendor','vendor payment','vendor master'],
+            reply: "Shubham handled <strong>Vendor Master Data & Payments</strong> — processing vendor payments, follow-ups, and maintaining vendor data. This was part of his daily responsibilities at Utility Powertech / NTPC Meja."
+        },
+        {
+            keys: ['ai','artificial intelligence','chatgpt','claude','gemini','prompt','prompt engineering','ai tools','digital'],
+            reply: "Shubham is skilled in <strong>AI tools & digital operations</strong>:<br>• Regular usage of ChatGPT, Claude & Gemini<br>• Prompt Engineering & AI Operations<br>• AI Content Creation & Tools Generation<br>• Adobe Photoshop, Acrobat & Pagemaker<br><br>This makes him well-suited for modern office and digital coordination roles."
+        },
+        {
+            keys: ['education','degree','study','college','university','school','qualification','bcom','b.com','commerce','allahabad'],
+            reply: "Shubham's education:<br><br>🎓 <strong>B.Com (Bachelor of Commerce)</strong> – University of Allahabad, 2016, Second Division<br>📘 <strong>Intermediate (Class XII)</strong> – Bethany Convent Senior Secondary School, 2013, Second Division<br>📗 <strong>High School (Class X)</strong> – Bethany Convent Senior Secondary School, 2011, First Division"
+        },
+        {
+            keys: ['publication','newsletter','ntpc newsletter','article','reflection','journey','published','wrote'],
+            reply: "Shubham had an article titled <strong>\"Reflection on My Journey\"</strong> published in the <strong>Quarterly Newsletter of the Finance Department at NTPC MEJA</strong> (Q3 2023, July–September). It is a personal reflection sharing professional insights and learnings from his experience in a high-value finance operations environment. You can view it on this portfolio."
+        },
+        {
+            keys: ['project','science congress','ncstc','agroforestry','mosquito','dst','national','award','recognition','achievement'],
+            reply: "Shubham has <strong>National Recognition</strong> from the NCSTC Network, DST Govt. of India:<br><br>🏆 <strong>National Children's Science Congress 2010</strong> – Project: Agroforestry, A Sustainable Land Use System<br>🏆 <strong>National Children's Science Congress 2009</strong> – Project: Mosquito Breeding"
+        },
+        {
+            keys: ['contact','reach','email','phone','call','mobile','number','linkedin','connect','hire','get in touch'],
+            reply: "You can contact Shubham through:<br><br>📧 <strong>Email:</strong> idynamoshubham@gmail.com<br>📞 <strong>Phone:</strong> +91 8737987129<br>💼 <strong>LinkedIn:</strong> <a href='https://www.linkedin.com/in/id-shubham' target='_blank' style='color:#c9a84c'>linkedin.com/in/id-shubham</a><br>📍 <strong>Location:</strong> Prayagraj, Uttar Pradesh, India"
+        },
+        {
+            keys: ['available','availability','looking','open','hiring','job','opportunity','seeking','searching','currently'],
+            reply: "Yes! Shubham is <strong>actively looking for opportunities</strong> in Back Office, MIS, or Office Coordinator roles. He is open to:<br>• Full-time positions<br>• Part-time positions<br>• Night shift roles<br>• Remote / work-from-home roles<br><br>Feel free to reach him at <strong>idynamoshubham@gmail.com</strong> or call <strong>+91 8737987129</strong>."
+        },
+        {
+            keys: ['remote','work from home','wfh','online','night shift','part time','parttime','full time','fulltime'],
+            reply: "Yes, Shubham is <strong>open to remote work, part-time, full-time, and night shift</strong> roles. He is flexible and actively seeking opportunities. Contact him at idynamoshubham@gmail.com or +91 8737987129."
+        },
+        {
+            keys: ['location','city','where','prayagraj','allahabad','uttar pradesh','india','based'],
+            reply: "Shubham is based in <strong>Prayagraj, Uttar Pradesh, India</strong>. He is open to remote work and relocation opportunities as well."
+        },
+        {
+            keys: ['interest','hobby','hobbies','passion','personal','music','photo','photography','volunteer','content','youtube'],
+            reply: "Shubham's interests & hobbies include:<br><br>🎵 Music &nbsp;|&nbsp; 📸 Photography &nbsp;|&nbsp; 🤝 Volunteering &nbsp;|&nbsp; 🤖 AI & Tech &nbsp;|&nbsp; 🎬 Content Creation<br><br>He is also building a <strong>YouTube channel</strong> in the Tech Reviews & Tutorials niche."
+        },
+        {
+            keys: ['goal','goals','future','plan','aspiration','youtube','channel','cloud kitchen','business'],
+            reply: "Shubham's career & personal goals:<br><br>💼 Actively seeking Back Office, MIS, or Office Coordinator roles<br>🌐 Open to remote, part-time, full-time & night shift positions<br>🎬 Building a <strong>YouTube channel</strong> in Tech Reviews & Tutorials niche<br>🍽️ Exploring a <strong>cloud kitchen business</strong> in Prayagraj"
+        },
+        {
+            keys: ['salary','ctc','package','expect','pay','compensation'],
+            reply: "Salary expectations are best discussed directly with Shubham. Please reach out at <strong>idynamoshubham@gmail.com</strong> or <strong>+91 8737987129</strong> to have that conversation."
+        },
+        {
+            keys: ['cv','resume','curriculum','download','pdf','vitae'],
+            reply: "You can view or download Shubham's CV directly from this portfolio — click the <strong>\"View CV\"</strong> button at the top of the page or in the Let's Connect section."
+        },
+        {
+            keys: ['strength','strong','best','strongest','highlight','key','value','offer'],
+            reply: "Shubham's key strengths are:<br><br>✅ <strong>&#8377;250–500 crore</strong> fund transaction handling with accuracy<br>✅ Cash & bank section operations expertise<br>✅ Bank guarantees & MIS management<br>✅ SAP FICO & Finmat working knowledge<br>✅ AI tools & prompt engineering skills<br>✅ 7+ years of consistent, detail-oriented back office work"
+        },
+        {
+            keys: ['hello','hi','hey','good morning','good afternoon','good evening','namaste','hii','helo'],
+            reply: "👋 Hello! I'm Shubham's portfolio assistant. I can answer questions about his <strong>experience, skills, education, projects,</strong> or <strong>how to contact him</strong>. What would you like to know?"
+        },
+        {
+            keys: ['thank','thanks','thankyou','thank you','great','awesome','good','nice','helpful','perfect'],
+            reply: "You're welcome! 😊 Feel free to ask anything else about Shubham's profile. If you'd like to connect with him directly, reach out at <strong>idynamoshubham@gmail.com</strong> or <strong>+91 8737987129</strong>."
+        }
+
+    ];
+
+    // ── MATCH ENGINE ────────────────────────────────────────────────
+    function getReply(input) {
+        const q = input.toLowerCase().trim();
+
+        // Score each KB entry
+        let best = null, bestScore = 0;
+        KB.forEach(function(entry) {
+            let score = 0;
+            entry.keys.forEach(function(k) {
+                if (q.includes(k)) score += k.length; // longer keyword match = higher weight
+            });
+            if (score > bestScore) { bestScore = score; best = entry; }
+        });
+
+        if (best && bestScore > 0) return best.reply;
+
+        // Fallback
+        return "I can answer questions about Shubham's <strong>experience, skills, education, projects, or contact details</strong>. Could you try rephrasing? For example — ask about his <em>work experience</em>, <em>SAP FICO skills</em>, <em>education</em>, or <em>how to contact him</em>.";
+    }
+
+    // ── UI ───────────────────────────────────────────────────────────
+    const launcher  = document.getElementById('chatLauncher');
+    const window_   = document.getElementById('chatWindow');
+    const closeBtn  = document.getElementById('chatClose');
+    const messagesEl= document.getElementById('chatMessages');
+    const inputEl   = document.getElementById('chatInput');
+    const sendBtn   = document.getElementById('chatSend');
+    const badge     = launcher.querySelector('.badge');
+
+    launcher.addEventListener('click', function() {
+        window_.classList.add('open');
+        badge.style.display = 'none';
+    });
+    closeBtn.addEventListener('click', function() { window_.classList.remove('open'); });
+
+    inputEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+    sendBtn.addEventListener('click', sendMessage);
+
+    function sendQuick(text) {
+        inputEl.value = text;
+        document.getElementById('quickReplies').style.display = 'none';
+        sendMessage();
+    }
+    window.sendQuick = sendQuick;
+
+    function appendMessage(role, html) {
+        var div = document.createElement('div');
+        div.className = 'msg ' + role;
+        var avatar = document.createElement('div');
+        avatar.className = 'msg-avatar';
+        avatar.textContent = role === 'bot' ? 'SA' : 'You';
+        if (role === 'user') avatar.style.fontSize = '0.6rem';
+        var bubble = document.createElement('div');
+        bubble.className = 'msg-bubble';
+        bubble.innerHTML = html;
+        div.appendChild(avatar);
+        div.appendChild(bubble);
+        messagesEl.appendChild(div);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function showTyping() {
+        var div = document.createElement('div');
+        div.className = 'msg bot';
+        div.id = 'typingIndicator';
+        var avatar = document.createElement('div');
+        avatar.className = 'msg-avatar';
+        avatar.textContent = 'SA';
+        var ind = document.createElement('div');
+        ind.className = 'typing-indicator';
+        ind.innerHTML = '<span></span><span></span><span></span>';
+        div.appendChild(avatar);
+        div.appendChild(ind);
+        messagesEl.appendChild(div);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function removeTyping() {
+        var el = document.getElementById('typingIndicator');
+        if (el) el.remove();
+    }
+
+    function sendMessage() {
+        var text = inputEl.value.trim();
+        if (!text) return;
+        inputEl.value = '';
+
+        appendMessage('user', text);
+        showTyping();
+
+        // Simulate natural typing delay (400–800ms)
+        var delay = 400 + Math.floor(Math.random() * 400);
+        setTimeout(function() {
+            removeTyping();
+            appendMessage('bot', getReply(text));
+        }, delay);
+    }
+
+})();
         "Answer only questions about Shubham clearly, accurately, and professionally.",
         "",
         "PROFILE:",
@@ -1257,172 +1483,7 @@
         "- If asked about remote work: yes, he is open to remote, part time, full time, and night shift roles.",
         "- For unrelated questions: politely say you can only answer questions about Shubham's profile.",
         "- Never make up information. Stick strictly to the profile above.",
-        "- Keep responses under 150 words unless a detailed answer is truly needed."
-    ].join("\n");
 
-    const messages = [];
-    let isLoading = false;
-
-    const launcher = document.getElementById('chatLauncher');
-    const window_ = document.getElementById('chatWindow');
-    const closeBtn = document.getElementById('chatClose');
-    const messagesEl = document.getElementById('chatMessages');
-    const inputEl = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('chatSend');
-    const badge = launcher.querySelector('.badge');
-
-    // Toggle
-    launcher.addEventListener('click', () => {
-        window_.classList.add('open');
-        badge.style.display = 'none';
-    });
-    closeBtn.addEventListener('click', () => window_.classList.remove('open'));
-
-    // Send on Enter
-    inputEl.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-    });
-    sendBtn.addEventListener('click', sendMessage);
-
-    function sendQuick(text) {
-        inputEl.value = text;
-        sendMessage();
-        // hide quick replies after first use
-        document.getElementById('quickReplies').style.display = 'none';
-    }
-    window.sendQuick = sendQuick;
-
-    function appendMessage(role, text) {
-        const div = document.createElement('div');
-        div.className = `msg ${role}`;
-        const avatar = document.createElement('div');
-        avatar.className = 'msg-avatar';
-        avatar.textContent = role === 'bot' ? 'SA' : 'You';
-        avatar.style.fontSize = role === 'user' ? '0.6rem' : '';
-        const bubble = document.createElement('div');
-        bubble.className = 'msg-bubble';
-        bubble.innerHTML = text.replace(/\n/g, '<br>');
-        div.appendChild(avatar);
-        div.appendChild(bubble);
-        messagesEl.appendChild(div);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-        return div;
-    }
-
-    function showTyping() {
-        const div = document.createElement('div');
-        div.className = 'msg bot';
-        div.id = 'typingIndicator';
-        const avatar = document.createElement('div');
-        avatar.className = 'msg-avatar';
-        avatar.textContent = 'SA';
-        const indicator = document.createElement('div');
-        indicator.className = 'typing-indicator';
-        indicator.innerHTML = '<span></span><span></span><span></span>';
-        div.appendChild(avatar);
-        div.appendChild(indicator);
-        messagesEl.appendChild(div);
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-    }
-
-    function removeTyping() {
-        const el = document.getElementById('typingIndicator');
-        if (el) el.remove();
-    }
-
-    async function sendMessage() {
-        const text = inputEl.value.trim();
-        if (!text || isLoading) return;
-
-        inputEl.value = '';
-        isLoading = true;
-        sendBtn.disabled = true;
-
-        appendMessage('user', text);
-        messages.push({ role: 'user', content: text });
-        showTyping();
-
-        try {
-            const response = await fetch('https://api.anthropic.com/v1/messages', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    model: 'claude-sonnet-4-20250514',
-                    max_tokens: 1000,
-                    system: SYSTEM_PROMPT,
-                    messages: messages
-                })
-            });
-
-            // Try to parse JSON safely
-            let data;
-            try {
-                data = await response.json();
-            } catch (parseErr) {
-                removeTyping();
-                messages.pop();
-                appendMessage('bot', 'Sorry, I received an unreadable response. Please try again.');
-                isLoading = false;
-                sendBtn.disabled = false;
-                inputEl.focus();
-                return;
-            }
-
-            removeTyping();
-
-            // Handle Anthropic API error responses
-            if (data.error) {
-                messages.pop();
-                const type = data.error.type || '';
-                if (type === 'authentication_error') {
-                    appendMessage('bot', 'The assistant is currently unavailable. Please contact Shubham directly at idynamoshubham@gmail.com');
-                } else if (type === 'rate_limit_error') {
-                    appendMessage('bot', 'Too many requests right now. Please wait a moment and try again.');
-                } else if (type === 'invalid_request_error') {
-                    appendMessage('bot', 'There was a request error. Please refresh the page and try again.');
-                } else {
-                    appendMessage('bot', 'API error: ' + (data.error.message || 'Unknown error') + '. Please try again.');
-                }
-                isLoading = false;
-                sendBtn.disabled = false;
-                inputEl.focus();
-                return;
-            }
-
-            // Handle missing or malformed content
-            if (!data.content || !Array.isArray(data.content) || data.content.length === 0) {
-                messages.pop();
-                appendMessage('bot', 'I received an empty response. Please try rephrasing your question.');
-                isLoading = false;
-                sendBtn.disabled = false;
-                inputEl.focus();
-                return;
-            }
-
-            const reply = data.content
-                .filter(function(b) { return b.type === 'text'; })
-                .map(function(b) { return b.text; })
-                .join('\n') || "I'm not sure how to answer that. Try asking about Shubham's experience, skills, or how to contact him.";
-
-            messages.push({ role: 'assistant', content: reply });
-            appendMessage('bot', reply);
-
-        } catch (err) {
-            removeTyping();
-            messages.pop();
-            if (err.name === 'TypeError') {
-                appendMessage('bot', 'Network error — please check your connection and try again. If you opened this file locally, try accessing the live portfolio site instead.');
-            } else {
-                appendMessage('bot', 'Something went wrong. Please try again or contact Shubham at idynamoshubham@gmail.com');
-            }
-        }
-
-        isLoading = false;
-        sendBtn.disabled = false;
-        inputEl.focus();
-    }
-})();
-</script>
 
 </body>
 </html>
