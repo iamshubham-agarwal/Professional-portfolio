@@ -177,7 +177,7 @@ body {
         rgba(201,168,76,0.12),
         transparent 28%
     );
-
+backdrop-filter: blur(1px);
     pointer-events:none;
 }
         /* all direct children above the curve */
@@ -190,13 +190,48 @@ body {
             padding: 4px;
             margin: 0 auto 22px;
             background: var(--navy-mid);
+            position: relative;
+overflow: visible;
         }
         .profile-ring img {
             width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
             display: block;
+            border: 2px solid rgba(255,255,255,0.15);
         }
+        .profile-ring::after{
+    content:'';
+
+    position:absolute;
+
+    inset:-12px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(201,168,76,0.22),
+        transparent 70%
+    );
+
+    z-index:-1;
+
+    animation: profileGlow 4s ease-in-out infinite;
+}
+        @keyframes profileGlow{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:0.7;
+    }
+
+    50%{
+        transform:scale(1.06);
+        opacity:1;
+    }
+}
         .hero-name {
             font-family: 'DM Serif Display', serif;
             font-size: clamp(2rem, 5vw, 3.2rem);
@@ -205,13 +240,38 @@ body {
             margin-bottom: 10px;
         }
         .hero-title {
-            font-size: 0.88rem;
-            font-weight: 500;
-            color: var(--gold-light);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+
+    display:inline-block;
+    position:relative;
+    padding-bottom:10px;
+}
+        .hero-title::after{
+    content:'';
+    position:absolute;
+
+    left:50%;
+    bottom:0;
+
+    transform:translateX(-50%);
+
+    width:70px;
+    height:2px;
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        var(--gold),
+        transparent
+    );
+
+    border-radius:10px;
+}
         .positioning-line {
             font-size: 0.9rem;
             color: rgba(255,255,255,0.58);
@@ -271,17 +331,44 @@ body {
         .btn:hover { transform: translateY(-2px); }
 
         .btn-primary {
-    background: var(--gold);
+    background: linear-gradient(
+        135deg,
+        #c9a84c,
+        #e8c97a,
+        #c9a84c
+    );
+
+    background-size: 200% 200%;
+
+    animation: goldFlow 5s ease infinite;
+
     color: var(--navy);
     border-color: var(--gold);
-    box-shadow: 0 4px 14px rgba(201,168,76,0.28);
+
+    box-shadow:
+        0 4px 14px rgba(201,168,76,0.28);
+}
+        @keyframes goldFlow{
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
 }
 
 .btn-primary:hover {
-    background: var(--gold-light);
-    border-color: var(--gold-light);
-    box-shadow: 0 8px 24px rgba(201,168,76,0.40);
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-2px) scale(1.03);
+
+    box-shadow:
+        0 10px 28px rgba(201,168,76,0.45);
+
+    filter: brightness(1.05);
 }
 
         .btn-outline {
@@ -358,7 +445,9 @@ pointer-events: none;   /* ADD THIS */
             margin: 0 auto;
             padding: 48px 24px 60px;
         }
-        .section { margin-bottom: 50px; }
+        .section {
+    margin-bottom: 58px;
+}
 
         .section-label {
             display: flex;
@@ -430,10 +519,18 @@ backdrop-filter: blur(10px);
 .edu-card:hover,
 .award-card:hover,
 .project-card:hover {
-    transform: translateY(-4px);
+
+    transform: translateY(-5px);
+
     box-shadow:
-        0 12px 32px rgba(15,30,53,0.14),
-        0 0 0 1px rgba(201,168,76,0.08);
+        0 18px 40px rgba(15,30,53,0.16),
+        0 0 0 1px rgba(201,168,76,0.10);
+
+    background: rgba(255,255,255,0.92);
+
+    border-color: rgba(201,168,76,0.25);
+
+    backdrop-filter: blur(14px);
 }
         .tl-item::before {
             content: '';
@@ -637,8 +734,18 @@ backdrop-filter: blur(8px);
             box-shadow: 0 2px 8px rgba(15,30,53,0.05);
             transition: all 0.2s;
         }
-        .interest-chip:hover { background: var(--navy); color: var(--gold-light); border-color: var(--navy); }
+.interest-chip:hover {
+    background: var(--navy);
 
+    color: var(--gold-light);
+
+    border-color: var(--gold);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(15,30,53,0.15);
+}
         /* ── FOOTER CTA ── */
         .cta-section {
             background: var(--navy);
