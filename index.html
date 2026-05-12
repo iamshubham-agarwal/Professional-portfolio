@@ -70,19 +70,45 @@
 
         /* ── AVAILABILITY BANNER ── */
         .availability-banner {
-            background: linear-gradient(90deg, #1a3a1a, #2d5a2d);
-            color: #fff;
-            padding: 11px 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            text-align: center;
-        }
+    background: linear-gradient(90deg, #1a3a1a, #2d5a2d);
+    color: #fff;
+    padding: 12px 18px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    flex-wrap: wrap;
+    text-align: center;
+}
+.availability-banner span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.availability-banner a {
+    background: #25d366;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    white-space: nowrap;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.availability-banner a:hover {
+    background: #1fb858;
+    transform: translateY(-1px);
+}
         .pulse-dot {
             width: 10px; height: 10px;
             background: #4ade80;
@@ -594,7 +620,16 @@ pointer-events: none;   /* ADD THIS */
             .tl-item          { padding: 16px 14px; }
             .btn              { padding: 10px 16px; font-size: 0.82rem; }
             .contact-strip    { gap: 14px; font-size: 0.79rem; }
-            .availability-banner { font-size: 0.77rem; padding: 9px 14px; }
+            .availability-banner {
+    font-size: 0.76rem;
+    line-height: 1.6;
+    padding: 10px 14px;
+}
+
+.availability-banner a {
+    width: fit-content;
+    margin-top: 4px;
+}
             .lang-card        { min-width: 140px; }
             .about-box        { padding: 20px 18px; }
             .micro-cta        { flex-direction: column; align-items: flex-start; }
