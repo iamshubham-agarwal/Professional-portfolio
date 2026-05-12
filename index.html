@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon1.png">
-    <meta name="theme-color" content="#0f1e35">
-
+    <meta name="format-detection" content="telephone=no">
+<link rel="icon" href="favicon1.png" sizes="32x32">
+<link rel="apple-touch-icon" href="favicon1.png">    <meta name="theme-color" content="#0f1e35">
+<link rel="preload" as="image" href="https://iamshubham-agarwal.github.io/Professional-portfolio/photo.jpg">
     <!-- SEO META -->
     <title>Shubham Agarwal | Back Office Associate | SAP FICO | MIS | Prayagraj</title>
     <meta name="description" content="Shubham Agarwal – Back Office & MIS professional with 7+ years experience. Managed ₹500 crore+ fund transactions at NTPC Meja. Expert in SAP FICO, Finmat, MIS Reporting, Cash & Bank Operations. Open to back office, computer operator, MIS, and office coordinator roles — full-time, part-time, remote & night shift.">
@@ -59,14 +60,29 @@
             --border:     #e2d9cc;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--cream);
-            color: var(--text);
-            line-height: 1.7;
-        }
+html{
+    scroll-behavior:smooth;
+}
+
+::selection{
+    background:#c9a84c;
+    color:#0f1e35;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x:hidden;
+}
 
         /* ── AVAILABILITY BANNER ── */
         .availability-banner {
@@ -232,10 +248,17 @@
         .btn:hover { transform: translateY(-2px); }
 
         .btn-primary {
-            background: var(--gold);
-            color: var(--navy);
-            border-color: var(--gold);
-        }
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+    box-shadow: 0 4px 14px rgba(201,168,76,0.28);
+}
+
+.btn-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.40);
+}
         .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
 
         .btn-outline {
@@ -370,14 +393,22 @@ pointer-events: none;   /* ADD THIS */
         }
         .tl-item {
             position: relative;
-            background: var(--white);
-            border-radius: 10px;
+background: rgba(255,255,255,0.78);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);            border-radius: 10px;
             padding: 22px 24px;
             margin-bottom: 20px;
             box-shadow: 0 2px 14px rgba(15,30,53,0.07);
             transition: transform 0.22s, box-shadow 0.22s;
         }
         .tl-item:hover { transform: translateX(4px); box-shadow: 0 6px 22px rgba(15,30,53,0.12); }
+        .tl-item:hover,
+.skill-box:hover,
+.edu-card:hover,
+.award-card:hover,
+.project-card:hover {
+    box-shadow: 0 10px 30px rgba(15,30,53,0.14);
+}
         .tl-item::before {
             content: '';
             position: absolute;
@@ -599,7 +630,22 @@ pointer-events: none;   /* ADD THIS */
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .fade-up.visible { opacity: 1; transform: none; }
+        .fade-up.visible {
+    opacity: 1;
+    transform: none;
+}
+
+.tl-item,
+.skill-box,
+.edu-card,
+.award-card,
+.project-card,
+.lang-card {
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
+}
 
         /* ── RESPONSIVE ── */
         @media (max-width: 640px) {
@@ -624,6 +670,24 @@ pointer-events: none;   /* ADD THIS */
             .micro-cta        { flex-direction: column; align-items: flex-start; }
             .li-title         { display: none; }
         }
+        /* ── CUSTOM SCROLLBAR ── */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f7f3ed;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#c9a84c;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#b89332;
+}
     </style>
 </head>
 <body>
@@ -652,7 +716,7 @@ pointer-events: none;   /* ADD THIS */
 <!-- ── HERO ── -->
 <div class="hero">
     <div class="profile-ring">
-<img src="https://iamshubham-agarwal.github.io/Professional-portfolio/photo.jpg" alt="Shubham Agarwal" loading="lazy">    </div>
+<img src="https://iamshubham-agarwal.github.io/Professional-portfolio/photo.jpg" alt="Shubham Agarwal" >    </div>
 
     <h1 class="hero-name">SHUBHAM AGARWAL</h1>
     <p class="hero-title">Back Office &amp; MIS Associate &nbsp;&middot;&nbsp; SAP FICO &nbsp;&middot;&nbsp; Office Operations &nbsp;&middot;&nbsp; AI Tools</p>
