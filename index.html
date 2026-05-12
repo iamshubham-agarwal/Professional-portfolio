@@ -229,6 +229,28 @@
             border-color: #25d366;
         }
         .btn-whatsapp:hover { background: #1fb858; border-color: #1fb858; }
+/* Floating WhatsApp polish */
+#floating-wa:hover {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+body {
+    padding-bottom: 60px;
+}
+
+#floating-wa {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.25s ease;
+pointer-events: none;   /* ADD THIS */
+}
+@media (max-width: 480px) {
+    #floating-wa {
+        bottom: 22px;
+        right: 16px;
+    }
+}
 
         /* ── LINKEDIN PREVIEW ── */
         .linkedin-preview {
@@ -582,7 +604,9 @@
         &nbsp;&mdash;&nbsp;
         Back Office &middot; MIS &middot; Computer Operator &middot; Office Coordinator
         &nbsp;&mdash;&nbsp;
-        <a href="mailto:idynamoshubham@gmail.com">Contact Now &rarr;</a>
+       <a href="https://wa.me/918737987129?text=Hi%20Shubham%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20back%20office%20or%20MIS%20role." target="_blank" rel="noopener noreferrer">
+💬 Chat on WhatsApp &rarr;
+</a>
     </span>
 </div>
 
@@ -601,10 +625,7 @@
            class="btn btn-primary" target="_blank" rel="noopener noreferrer">
             <i class="fa-solid fa-file-lines"></i> View CV
         </a>
-        <a href="https://wa.me/918737987129?text=Hi%20Shubham%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20role."
-           class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-        </a>
+       
     </div>
 
     <div class="contact-strip">
@@ -644,7 +665,7 @@
         <div class="section-label"><h2>About Me</h2></div>
         <div class="about-box">
             <p>
-                Back office professional with <strong>Total 8+ years of experience</strong> and <strong>6 years of experience</strong> in cash &amp; bank operations, documents management, MIS reporting, and office coordination. At Meja Thermal Power Project (NTPC–UPRVUNL JV), managed fund transactions worth <strong>&#8377;250–&#8377;500 crore</strong> using <strong>SAP FICO basics</strong> and <strong>Finmat by XL Softech</strong>. Also skilled in AI tools and prompt engineering. Currently upskilling in digital operations while actively seeking the right opportunity.
+                Back office professional with <strong>8+ years of total experience,</strong> including <strong>6 years</strong> in cash &amp; bank operations, documents management, MIS reporting, and office coordination. At Meja Thermal Power Project (NTPC–UPRVUNL JV), managed high value fund transactions using <strong>SAP FICO basics</strong> and <strong>Finmat by XL Softech</strong>. Also skilled in AI tools and prompt engineering. Currently upskilling in digital operations while actively seeking the right opportunity.
             </p>
             <div class="about-keywords">
                 <span class="kw-tag">SAP FICO Basics</span>
@@ -673,7 +694,7 @@
                 <div class="tl-duration"><i class="fa-regular fa-calendar"></i> January 2025 – August 2025</div>
                 <ul>
                     <li>Onboarded merchants, deployed Paytm products <strong>(EDC Swipe machine, Soundbox, QR)</strong>.</li>
-                    <li>Managed KYC documentation, <strong>Loan</strong> and <strong>Gold SIP leads</strong> .</li>
+                    <li>Managed KYC documentation, <strong>Loan</strong> and <strong>Gold SIP leads</strong>.</li>
                     <li>Maintained lead records and consistently met daily targets.</li>
                 </ul>
                 <div class="tl-note">
@@ -693,7 +714,7 @@
                 <div class="tl-sub">Meja Thermal Power Project (JV of NTPC &amp; UPRVUNL), Prayagraj</div>
                 <div class="tl-duration"><i class="fa-regular fa-calendar"></i> March 2019 – January 2025</div>
                 <ul>
-                    <li>Managed fund transactions worth <strong>&#8377;250–&#8377;500 crore</strong> under the cash &amp; bank section of Finance & Accounts Department with high accuracy.</li>
+                    <li>Managed high value fund transactions under the cash &amp; bank section of Finance Department with high accuracy.</li>
                     <li>Processed daily bank payments and prepared bank advices.</li>
                     <li>Handled work contract billing and payments using <strong>SAP FICO basics</strong> and <strong>Finmat by XL Softech</strong>.</li>
                     <li>Maintained MIS reports for bank guarantees and SRV records — ensuring audit-ready records across departments.</li>
@@ -821,7 +842,7 @@
 
 <!-- ── CERTIFICATIONS ── -->
 <div class="section fade-up">
-    <div class="section-label"><h2>Certifications & Licences</h2></div>
+    <div class="section-label"><h2>Certifications</h2></div>
 
     <div class="award-card" style="align-items:center;">
 
@@ -863,13 +884,25 @@
                 color:#7a5c00;
                 font-weight:600;
             ">
-                Government Certified
+                Government Certified (Computer Proficiency)
             </div>
         </div>
 
     </div>
 </div>
-    
+<div class="section fade-up">
+    <div class="section-label"><h2>Verification</h2></div>
+
+    <div class="award-card">
+        <div class="award-icon">✔️</div>
+        <div>
+            <h3>Verified PSU Experience  -  5+ Years</h3>
+<p>Utility Powertech Ltd. (JV of Ntpc &amp; Reliance Infrastructure)</p>
+<p>Project Site: Meja Thermal Power Project, Prayagraj (JV of NTPC &amp; UPRVUNL)</p>
+        </div>
+    </div>
+</div>
+
     <!-- ── LANGUAGES ── -->
     <div class="section fade-up">
         <div class="section-label"><h2>Languages</h2></div>
@@ -901,13 +934,16 @@
         </div>
     </div>
 
-    <!-- ── NATIONAL RECOGNITION ── -->
+      <!-- ── NATIONAL RECOGNITION ── -->
     <div class="section fade-up">
         <div class="section-label"><h2>National Recognition</h2></div>
         <div class="award-card">
             <div class="award-icon">🏆</div>
             <div>
-                <h3>National Children's Science Congress 2010</h3>
+                <h3>National Children's Science Congress 2010</h3><div class="outcome-line">
+    <i class="fa-solid fa-award"></i>
+    Represented at National Level (DST Govt. of India)
+</div>
                 <p><strong>Project:</strong> Agroforestry – A Sustainable Land Use System</p>
                 <p><strong>Organizer:</strong> NCSTC Network, DST Govt. of India</p>
             </div>
@@ -916,11 +952,17 @@
             <div class="award-icon">🏆</div>
             <div>
                 <h3>National Children's Science Congress 2009</h3>
+<div class="outcome-line">
+    <i class="fa-solid fa-award"></i>
+    Represented at National Level (DST Govt. of India)
+</div>
                 <p><strong>Project:</strong> Mosquito Breeding</p>
                 <p><strong>Organizer:</strong> NCSTC Network, DST Govt. of India</p>
             </div>
         </div>
     </div>
+
+
 
     <!-- ── INTERESTS ── -->
     <div class="section fade-up">
@@ -939,10 +981,7 @@
         <h2>Let's Connect</h2>
         <p>Open to full-time, part-time, night shift &amp; remote opportunities — Back Office, MIS, Computer Operator &amp; Office Coordinator roles.</p>
         <div class="cta-btns">
-            <a href="https://wa.me/918737987129?text=Hi%20Shubham%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20role."
-               class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-            </a>
+            
             <a href="https://www.linkedin.com/in/id-shubham"
                class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-linkedin"></i> LinkedIn
@@ -962,7 +1001,57 @@
 
 </div>
 
+
+<a href="https://wa.me/918737987129" 
+   id="floating-wa"
+   target="_blank"  rel="noopener noreferrer"
+   style="
+   position:fixed;
+   bottom:18px;
+   right:18px;
+   background:#25d366;
+   color:#fff;
+   width:48px;
+   height:48px;
+   border-radius:50%;
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   font-size:1.2rem;
+   text-decoration:none;
+   box-shadow:0 4px 10px rgba(0,0,0,0.15);
+   z-index:999;
+   
+   ">
+   <i class="fa-brands fa-whatsapp"></i>
+</a>
+
 <script>
+const waBtn = document.getElementById("floating-wa");
+
+let isVisible = false;
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 400 && !isVisible) {
+        waBtn.style.opacity = "1";
+        waBtn.style.transform = "scale(1)";
+        waBtn.style.pointerEvents = "auto";
+        isVisible = true;
+    } 
+    else if (window.scrollY <= 400 && isVisible) {
+        waBtn.style.opacity = "0";
+        waBtn.style.transform = "scale(0.9)";
+        waBtn.style.pointerEvents = "none";
+        isVisible = false;
+    }
+});
+</script>
+<script>
+if (!("IntersectionObserver" in window)) {
+    document.querySelectorAll('.fade-up').forEach(el => {
+        el.classList.add('visible');
+    });
+} else {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
@@ -970,8 +1059,9 @@
             }
         });
     }, { threshold: 0.08 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
 
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+}
+</script>
 </body>
 </html>
