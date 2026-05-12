@@ -69,6 +69,8 @@
 
 html{
     scroll-behavior:smooth;
+        scroll-padding-top:20px;
+
 }
 
 ::selection{
@@ -148,12 +150,13 @@ body {
 
         /* ── HERO ── */
         .hero {
-            background: var(--navy);
-            color: var(--white);
-            padding: 56px 40px 78px;
-            text-align: center;
-            position: relative;
-        }
+    background: var(--navy);
+    color: var(--white);
+    padding: 56px 40px 78px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
         .hero::after {
             content: '';
             position: absolute;
@@ -163,6 +166,20 @@ body {
             clip-path: ellipse(55% 100% at 50% 100%);
             z-index: 0;
         }
+        .hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at top right,
+        rgba(201,168,76,0.12),
+        transparent 28%
+    );
+
+    pointer-events:none;
+}
         /* all direct children above the curve */
         .hero > * { position: relative; z-index: 1; }
 
@@ -264,8 +281,8 @@ body {
     background: var(--gold-light);
     border-color: var(--gold-light);
     box-shadow: 0 8px 24px rgba(201,168,76,0.40);
+    transform: translateY(-2px) scale(1.02);
 }
-        .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
 
         .btn-outline {
             background: transparent;
@@ -413,7 +430,10 @@ backdrop-filter: blur(10px);
 .edu-card:hover,
 .award-card:hover,
 .project-card:hover {
-    box-shadow: 0 10px 30px rgba(15,30,53,0.14);
+    transform: translateY(-4px);
+    box-shadow:
+        0 12px 32px rgba(15,30,53,0.14),
+        0 0 0 1px rgba(201,168,76,0.08);
 }
         .tl-item::before {
             content: '';
@@ -639,7 +659,7 @@ backdrop-filter: blur(8px);
         }
         .fade-up.visible {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
 }
 
 .tl-item,
